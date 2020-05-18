@@ -27,6 +27,10 @@ class SceneMain extends Phaser.Scene {
 
         this.ship = this.physics.add.sprite(this.centerX, this.centerY, 'ship');
         Align.scaleToGameW(this.ship, .125);
+        
+        // scales background with the ship
+        this.background.scaleX = this.ship.scaleX;
+        this.background.scaleY = this.ship.scaleY;
 
         this.background.setInteractive(); // make background interactive
         this.background.on('pointerdown', this.backgroundClicked, this);
@@ -41,7 +45,7 @@ class SceneMain extends Phaser.Scene {
         this.ship.angle = angle;
     }
 
-    toDegrees(angle) {
+    toDegrees(angle) { // allows ships nose to turn to where it's headed
         return angle * (180 / Math.PI);
     }
     
