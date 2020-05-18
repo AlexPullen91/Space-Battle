@@ -34,6 +34,10 @@ class SceneMain extends Phaser.Scene {
 
         this.background.setInteractive(); // make background interactive
         this.background.on('pointerdown', this.backgroundClicked, this);
+        // scrolling background
+        // determines where we can move the ship
+        this.cameras.main.setBounds(0, 0, this.background.displayWidth, this.background.displayHeight);
+        this.cameras.main.startFollow(this.ship, true);
     }
 
     backgroundClicked() {
