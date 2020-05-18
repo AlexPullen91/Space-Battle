@@ -27,7 +27,7 @@ class SceneMain extends Phaser.Scene {
 
         this.ship = this.physics.add.sprite(this.centerX, this.centerY, 'ship');
         Align.scaleToGameW(this.ship, .125);
-        
+
         // scales background with the ship
         this.background.scaleX = this.ship.scaleX;
         this.background.scaleY = this.ship.scaleY;
@@ -37,8 +37,10 @@ class SceneMain extends Phaser.Scene {
     }
 
     backgroundClicked() {
-        var tx = this.background.input.localX; // target x... where on the image it was clicked
-        var ty = this.background.input.localY; // target y... where on the image it was clicked
+        var tx = this.background.input.localX * this.background.scaleX; // target x... where on the image it was clicked
+        var ty = this.background.input.localY * this.background.scaleY; // target y... where on the image it was clicked
+        this.tx = tx;
+        this.ty = ty;
 
         var angle = this.physics.moveTo(this.ship, tx, ty, 60);
         angle = this.toDegrees(angle);
@@ -50,6 +52,10 @@ class SceneMain extends Phaser.Scene {
     }
     
     update() {
-        
+        var distX = Math.abs(this.ship.x - this.tx); // take ship's x and target's x
+        var distY = Math.abs(this.ship.y - this.ty); // take ship's y and target's y
+        if (distX < 10 && distY < 10) {
+            this.ship.body.setVelocity(0, 0); // we are close enough to our target spot to stop the ship
+        }
     }
 }
