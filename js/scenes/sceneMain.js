@@ -38,6 +38,24 @@ class SceneMain extends Phaser.Scene {
         // determines where we can move the ship
         this.cameras.main.setBounds(0, 0, this.background.displayWidth, this.background.displayHeight);
         this.cameras.main.startFollow(this.ship, true);
+        // add rocks
+        this.rockGroup = this.physics.add.group({ // add sprites into the group
+            key: 'rocks',
+            frame: [0, 1, 2],
+            frameQuantity: 4, // 4 times for every frame
+            bounceX: 1,
+            bounceY: 1,
+            angularVelocity: 1,
+            colliderWorldBounds: true
+        });
+        this.rockGroup.children.iterate(function(child){ // randomly place the rock groups
+            var xx = Math.floor(Math.random() * this.background.displayWidth);
+            var yy = Math.floor(Math.random() * this.background.displayHeight);
+            child.x = xx;
+            child.y = yy;
+
+            Align.scaleToGameW(child, .1);
+        }.bind(this));
     }
 
     backgroundClicked() {
