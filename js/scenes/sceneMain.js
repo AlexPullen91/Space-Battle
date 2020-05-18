@@ -25,6 +25,16 @@ class SceneMain extends Phaser.Scene {
         this.background = this.add.image(0, 0, 'background');
         this.background.setOrigin(0, 0);
         this.ship = this.physics.add.sprite(this.centerX, this.centerY, 'ship');
+
+        this.background.setInteractive(); // make background interactive
+        this.background.on('pointerdown', this.backgroundClicked, this);
+    }
+
+    backgroundClicked() {
+        var tx = this.background.input.localX; // target x... where on the image it was clicked
+        var ty = this.background.input.localY; // target y... where on the image it was clicked
+
+        this.physics.moveTo(this.ship, tx, ty, 60);
     }
     
     update() {
