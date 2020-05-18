@@ -31,6 +31,8 @@ class SceneMain extends Phaser.Scene {
         // scales background with the ship
         this.background.scaleX = this.ship.scaleX;
         this.background.scaleY = this.ship.scaleY;
+        // allows entire area of background to be used by rock objects
+        this.physics.world.setBounds(0, 0, this.background.displayWidth, this.background.displayHeight);
 
         this.background.setInteractive(); // make background interactive
         this.background.on('pointerdown', this.backgroundClicked, this);
@@ -46,7 +48,7 @@ class SceneMain extends Phaser.Scene {
             bounceX: 1,
             bounceY: 1,
             angularVelocity: 1,
-            colliderWorldBounds: true
+            collideWorldBounds: true
         });
         this.rockGroup.children.iterate(function(child){ // randomly place the rock groups
             var xx = Math.floor(Math.random() * this.background.displayWidth);
@@ -59,6 +61,10 @@ class SceneMain extends Phaser.Scene {
             // to move rocks the following code gives -1, 0 or 1
             var vx = Math.floor(Math.random() * 2) - 1;
             var vy = Math.floor(Math.random() * 2) - 1;
+            if (vx == 0 && vy == 0) { // ensures all rocks move at at least a rate of 1
+                vx = 1;
+                vy = 1;
+            }
             // gives a speed somewhere between 10 and 200
             var speed = Math.floor(Math.random() * 200) + 10;
             child.body.setVelocity(vx * speed, vy * speed);
