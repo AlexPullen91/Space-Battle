@@ -70,6 +70,8 @@ class SceneMain extends Phaser.Scene {
             child.body.setVelocity(vx * speed, vy * speed);
 
         }.bind(this));
+
+        this.physics.add.collider(this.rockGroup); // makes rocks collide with one another
     }
 
     backgroundClicked() {
