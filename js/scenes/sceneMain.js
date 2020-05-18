@@ -55,6 +55,14 @@ class SceneMain extends Phaser.Scene {
             child.y = yy;
 
             Align.scaleToGameW(child, .1);
+
+            // to move rocks the following code gives -1, 0 or 1
+            var vx = Math.floor(Math.random() * 2) - 1;
+            var vy = Math.floor(Math.random() * 2) - 1;
+            // gives a speed somewhere between 10 and 200
+            var speed = Math.floor(Math.random() * 200) + 10;
+            child.body.setVelocity(vx * speed, vy * speed);
+
         }.bind(this));
     }
 
