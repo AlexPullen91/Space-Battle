@@ -97,6 +97,23 @@ class SceneMain extends Phaser.Scene {
         // add bad guy to game
         this.eship = this.physics.add.sprite(this.centerX, 0, 'eship');
         Align.scaleToGameW(this.eship, .25);
+
+        this.makeInfo();
+    }
+
+    makeInfo() { // player and enemy information
+        this.text1 = this.add.text(0, 0, "Shields\n100", {align: "center", backgroundColor: '#000000'});
+        this.text2 = this.add.text(0, 0, "Enemy Shields\n100", {align: "center", backgroundColor: '#000000'});
+
+       this.text1.setOrigin(0.5, 0.5); // center text within the cell
+       this.text2.setOrigin(0.5, 0.5); // center text within the cell
+
+        this.uiGrid = new AlignGrid({scene: this, rows: 11, cols: 11});
+        this.uiGrid.showNumbers();
+        //
+        //
+        this.uiGrid.placeAtIndex(2, this.text1); // position player info on the grid
+        this.uiGrid.placeAtIndex(9, this.text2); // position enemy info on the grid
     }
 
     destroyRock(bullet, rock) {
