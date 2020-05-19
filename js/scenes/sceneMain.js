@@ -10,8 +10,8 @@ class SceneMain extends Phaser.Scene {
     controller = new Controller();
     model.gameOver = false;
 
-    this.shields = 100;
-    this.eshields = 100;
+    this.shields = 5;
+    this.eshields = 5;
     model.playerWon = true;
 
     // gives us dead center of the game
