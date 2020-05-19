@@ -6,6 +6,7 @@ class SceneMain extends Phaser.Scene {
     preload() {
         
     }
+
     create() {
         emitter = new Phaser.Events.EventEmitter();
         controller = new Controller();
@@ -148,6 +149,12 @@ class SceneMain extends Phaser.Scene {
         bullet.body.setVelocity(dirObj.tx * 200, dirObj.ty * 200);
     }
 
+    fireEBullet() { // enemy bullet function
+        var ebullet = this.physics.add.sprite(this.eship.x, this.eship.y, 'ebullet');
+        ebullet.body.angularVelocity = 10;
+        this.physics.moveTo(ebullet, this.ship.x, this.ship.y, 60);
+    }
+
     getDirFromAngle(angle) {
         var rads = angle * Math.PI / 180;
         var tx = Math.cos(rads);
@@ -167,6 +174,13 @@ class SceneMain extends Phaser.Scene {
         var distY = Math.abs(this.ship.y - this.ty); // take ship's y and target's y
         if (distX < 10 && distY < 10) {
             this.ship.body.setVelocity(0, 0); // we are close enough to our target spot to stop the ship
+        }
+
+        // only allow bad guy to shoot if he is range of us
+        var distX2 = Math.abs(this.ship.x - this.eship.x); // take ship's x and enemy ship's x
+        var distY2 = Math.abs(this.ship.y - this.eship.y); // take ship's y and enemy ship's y
+        if (distX2 < game.config.width / 5 && distY2 < game.config.height / 5) {
+            this.fireEBullet();
         }
     }
 }
