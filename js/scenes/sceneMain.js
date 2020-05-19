@@ -8,7 +8,12 @@ class SceneMain extends Phaser.Scene {
   create() {
     emitter = new Phaser.Events.EventEmitter();
     controller = new Controller();
-    
+    var mediaManager = new MediaManager({scene: this});
+
+    mediaManager.setBackgroundMusic("backgroundMusic");
+    //
+    //
+    //
 
     this.shields = 5;
     this.eshields = 5;
@@ -84,21 +89,7 @@ class SceneMain extends Phaser.Scene {
       null,
       this
     );
-    // explosion animation
-    var frameNames = this.anims.generateFrameNumbers("exp");
-
-    // plays explosion animation from small to big and big to small
-    var f2 = frameNames.slice();
-    f2.reverse();
-
-    var f3 = f2.concat(frameNames);
-
-    this.anims.create({
-      key: "boom",
-      frames: f3,
-      frameRate: 48,
-      repeat: false,
-    });
+    
     // add bad guy to game
     this.eship = this.physics.add.sprite(this.centerX, 0, "eship");
     this.eship.body.collideWorldBounds = true;
@@ -106,6 +97,8 @@ class SceneMain extends Phaser.Scene {
 
     this.makeInfo();
     this.setColliders();
+
+    var sb = new SoundButtons({scene: this});
   }
 
   makeRocks() {
@@ -208,7 +201,7 @@ class SceneMain extends Phaser.Scene {
     //
     //
     this.uiGrid.placeAtIndex(2, this.text1); // position player info on the grid
-    this.uiGrid.placeAtIndex(9, this.text2); // position enemy info on the grid
+    this.uiGrid.placeAtIndex(8, this.text2); // position enemy info on the grid
 
     this.icon1 = this.add.image(0, 0, "ship");
     this.icon2 = this.add.image(0, 0, "eship");
@@ -216,7 +209,7 @@ class SceneMain extends Phaser.Scene {
     Align.scaleToGameW(this.icon2, 0.05);
 
     this.uiGrid.placeAtIndex(1, this.icon1); // position player icon to the left of the info
-    this.uiGrid.placeAtIndex(7, this.icon2); // position enemy icon to the left of the
+    this.uiGrid.placeAtIndex(6, this.icon2); // position enemy icon to the left of the
 
     // point ship icons upwards
     this.icon1.angle = 270;
@@ -251,6 +244,7 @@ class SceneMain extends Phaser.Scene {
   rockHitPlayer(ship, rock) {
     var explosion = this.add.sprite(rock.x, rock.y, "exp");
     explosion.play("boom");
+    emitter.emit(G.PLAY_SOUND, "explode");
     rock.destroy();
     this.makeRocks();
     this.downPlayer();
@@ -259,6 +253,7 @@ class SceneMain extends Phaser.Scene {
   rockHitEnemy(ship, rock) {
     var explosion = this.add.sprite(rock.x, rock.y, "exp");
     explosion.play("boom");
+    emitter.emit(G.PLAY_SOUND, "explode");
     rock.destroy();
     this.makeRocks();
     this.downEnemy();
@@ -267,6 +262,7 @@ class SceneMain extends Phaser.Scene {
   damagePlayer(ship, bullet) {
     var explosion = this.add.sprite(this.ship.x, this.ship.y, "exp");
     explosion.play("boom");
+    emitter.emit(G.PLAY_SOUND, "explode");
     bullet.destroy();
     this.downPlayer();
   }
@@ -274,6 +270,7 @@ class SceneMain extends Phaser.Scene {
   damageEnemy(ship, bullet) {
     var explosion = this.add.sprite(bullet.x, bullet.y, "exp");
     explosion.play("boom");
+    emitter.emit(G.PLAY_SOUND, "explode");
     bullet.destroy();
     // when enemy ship is hit it speeds up and hunts down player
     var angle2 = this.physics.moveTo(this.eship, this.ship.x, this.ship.y, 100);
@@ -286,6 +283,7 @@ class SceneMain extends Phaser.Scene {
     bullet.destroy();
     var explosion = this.add.sprite(rock.x, rock.y, "exp");
     explosion.play("boom");
+    emitter.emit(G.PLAY_SOUND, "explode");
     rock.destroy();
     this.makeRocks();
   }
@@ -349,6 +347,7 @@ class SceneMain extends Phaser.Scene {
     this.bulletGroup.add(bullet); // add bullet to the group
     bullet.angle = this.ship.angle;
     bullet.body.setVelocity(dirObj.tx * 200, dirObj.ty * 200);
+    emitter.emit(G.PLAY_SOUND, "laser");
   }
 
   fireEBullet() {
@@ -366,6 +365,7 @@ class SceneMain extends Phaser.Scene {
     this.ebulletGroup.add(ebullet); // enables destruction of rocks
     ebullet.body.angularVelocity = 10;
     this.physics.moveTo(ebullet, this.ship.x, this.ship.y, 100);
+    emitter.emit(G.PLAY_SOUND, "enemyShoot");
   }
 
   getDirFromAngle(angle) {
