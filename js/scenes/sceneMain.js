@@ -101,9 +101,27 @@ class SceneMain extends Phaser.Scene {
             angle = this.toDegrees(angle);
             this.ship.angle = angle;
         } else {
-            console.log("FIRE!");
+            this.makeBullet();
         }
        
+    }
+
+    makeBullet() {
+        var dirObj = this.getDirFromAngle(this.ship.angle);
+        console.log(dirObj);
+        var bullet = this.physics.add.sprite(this.ship.x + dirObj.tx * 30, this.ship.y + dirObj.ty * 30, 'bullet');
+        bullet.angle = this.ship.angle;
+        bullet.body.setVelocity(dirObj.tx * 200, dirObj.ty * 200);
+    }
+
+    getDirFromAngle(angle) {
+        var rads = angle * Math.PI / 180;
+        var tx = Math.cos(rads);
+        var ty = Math.sin(rads);
+        return {
+            tx,
+            ty
+        }
     }
 
     toDegrees(angle) { // allows ships nose to turn to where it's headed
