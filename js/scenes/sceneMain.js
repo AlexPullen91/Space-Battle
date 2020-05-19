@@ -192,13 +192,22 @@ class SceneMain extends Phaser.Scene {
             var angle = this.physics.moveTo(this.ship, tx, ty, 100);
             angle = this.toDegrees(angle);
             this.ship.angle = angle;
+            //
+            //
+            //
+            // enemy ship won't track player if player is only turning
+            var distX2 = Math.abs(this.ship.x - tx); // take ship's x and enemy ship's x
+            var distY2 = Math.abs(this.ship.y - ty); // take ship's y and enemy ship's y
+            if (distX2 > 30 && distY2 > 30) {
+            // every time we make a move the baddie zeros in on our position
+            var angle2 = this.physics.moveTo(this.eship, this.ship.x, this.ship.y, 60);
+            angle2 = this.toDegrees(angle2);
+            this.eship.angle = angle2;
+            }
         } else {
             this.makeBullet();
         }
-        // every time we make a move the baddie zeros in on our position
-        var angle2 = this.physics.moveTo(this.eship, this.ship.x, this.ship.y, 60);
-            angle2 = this.toDegrees(angle2);
-            this.eship.angle = angle2;
+        
        
     }
 
