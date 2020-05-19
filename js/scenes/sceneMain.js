@@ -12,6 +12,7 @@ class SceneMain extends Phaser.Scene {
 
     this.shields = 100;
     this.eshields = 100;
+    model.playerWon = true;
 
     // gives us dead center of the game
     this.centerX = game.config.width / 2;
@@ -232,11 +233,19 @@ class SceneMain extends Phaser.Scene {
   downPlayer() {
     this.shields--;
     this.text1.setText("Shields\n" + this.shields);
+    if (this.shields == 0) {
+        model.playerWon == false;
+        this.scene.start("SceneOver");
+    }
   }
 
   downEnemy() {
     this.eshields--;
     this.text2.setText("Enemy Shields\n" + this.eshields);
+    if (this.eshields == 0) {
+        model.playerWon == false;
+        this.scene.start("SceneOver");
+    }
   }
 
   rockHitPlayer(ship, rock) {
