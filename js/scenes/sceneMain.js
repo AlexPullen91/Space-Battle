@@ -27,6 +27,7 @@ class SceneMain extends Phaser.Scene {
         this.background.setOrigin(0, 0);
 
         this.ship = this.physics.add.sprite(this.centerX, this.centerY, 'ship');
+        this.ship.body.collideWorldBounds = true;
         Align.scaleToGameW(this.ship, .125);
 
         // scales background with the ship
@@ -99,6 +100,7 @@ class SceneMain extends Phaser.Scene {
         });
         // add bad guy to game
         this.eship = this.physics.add.sprite(this.centerX, 0, 'eship');
+        this.eship.body.collideWorldBounds = true;
         Align.scaleToGameW(this.eship, .25);
 
         this.makeInfo();
