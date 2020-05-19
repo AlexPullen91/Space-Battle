@@ -93,6 +93,7 @@ class SceneMain extends Phaser.Scene {
             frameRate: 48,
             repeat: false
         });
+        // add bad guy to game
         this.eship = this.physics.add.sprite(this.centerX, 0, 'eship');
         Align.scaleToGameW(this.eship, .25);
     }
@@ -125,12 +126,16 @@ class SceneMain extends Phaser.Scene {
             this.tx = tx;
             this.ty = ty;
 
-            var angle = this.physics.moveTo(this.ship, tx, ty, 60);
+            var angle = this.physics.moveTo(this.ship, tx, ty, 100);
             angle = this.toDegrees(angle);
             this.ship.angle = angle;
         } else {
             this.makeBullet();
         }
+        // every time we make a move the baddie zeros in on our position
+        var angle2 = this.physics.moveTo(this.eship, this.ship.x, this.ship.y, 60);
+            angle2 = this.toDegrees(angle2);
+            this.eship.angle = angle2;
        
     }
 
