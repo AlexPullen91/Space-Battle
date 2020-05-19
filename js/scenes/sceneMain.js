@@ -126,6 +126,14 @@ class SceneMain extends Phaser.Scene {
         // point ship icons upwards
         this.icon1.angle = 270; 
         this.icon2.angle = 270;
+
+        // stops the icons and the text from scrolling
+        // fix with the camera
+        this.text1.setScrollFactor(0);
+        this.text2.setScrollFactor(0);
+        this.icon1.setScrollFactor(0);
+        this.icon2.setScrollFactor(0);
+
     }
 
     destroyRock(bullet, rock) {
