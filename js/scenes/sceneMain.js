@@ -8,7 +8,7 @@ class SceneMain extends Phaser.Scene {
   create() {
     emitter = new Phaser.Events.EventEmitter();
     controller = new Controller();
-    model.gameOver = false;
+    
 
     this.shields = 5;
     this.eshields = 5;
@@ -243,7 +243,7 @@ class SceneMain extends Phaser.Scene {
     this.eshields--;
     this.text2.setText("Enemy Shields\n" + this.eshields);
     if (this.eshields == 0) {
-        model.playerWon == false;
+        model.playerWon == true;
         this.scene.start("SceneOver");
     }
   }
