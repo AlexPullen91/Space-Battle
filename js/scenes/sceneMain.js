@@ -80,7 +80,8 @@ class SceneMain extends Phaser.Scene {
         this.physics.add.collider(this.rockGroup); // makes rocks collide with one another
         this.physics.add.collider(this.bulletGroup, this.rockGroup, this.destroyRock, null, this); // allows player bullets to destroy rocks
         this.physics.add.collider(this.ebulletGroup, this.rockGroup, this.destroyRock, null, this); // allows enemy bullets to destroy rocks
-        this.physics.add.collider(this.bulletGroup, this.eship, this.destroyRock, null, this);
+        this.physics.add.collider(this.bulletGroup, this.eship, this.damageEnemy, null, this);
+        this.physics.add.collider(this.ebulletGroup, this.ship, this.damagePlayer, null, this);
         // explosion animation
         var frameNames = this.anims.generateFrameNumbers('exp');
 
@@ -144,6 +145,12 @@ class SceneMain extends Phaser.Scene {
         this.icon1.setScrollFactor(0);
         this.icon2.setScrollFactor(0);
 
+    }
+
+    damagePlayer(ship, bullet) {
+        var explosion = this.add.sprite(this.ship.x, this.ship.y, 'exp');
+        explosion.play('boom');
+        bullet.destroy();
     }
 
     damageEnemy(ship, bullet) {
