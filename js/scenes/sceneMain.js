@@ -102,8 +102,8 @@ class SceneMain extends Phaser.Scene {
     }
 
     makeInfo() { // player and enemy information
-        this.text1 = this.add.text(0, 0, "Shields\n100", {align: "center", backgroundColor: '#000000'});
-        this.text2 = this.add.text(0, 0, "Enemy Shields\n100", {align: "center", backgroundColor: '#000000'});
+        this.text1 = this.add.text(0, 0, "Shields\n100", {fontSize: game.config.width / 30, align: "center", backgroundColor: '#000000'});
+        this.text2 = this.add.text(0, 0, "Enemy Shields\n100", {fontSize: game.config.width / 30, align: "center", backgroundColor: '#000000'});
 
        this.text1.setOrigin(0.5, 0.5); // center text within the cell
        this.text2.setOrigin(0.5, 0.5); // center text within the cell
@@ -114,6 +114,18 @@ class SceneMain extends Phaser.Scene {
         //
         this.uiGrid.placeAtIndex(2, this.text1); // position player info on the grid
         this.uiGrid.placeAtIndex(9, this.text2); // position enemy info on the grid
+
+        this.icon1 = this.add.image(0, 0, "ship");
+        this.icon2 = this.add.image(0, 0, "eship");
+        Align.scaleToGameW(this.icon1, .05);
+        Align.scaleToGameW(this.icon2, .05);
+
+        this.uiGrid.placeAtIndex(1, this.icon1); // position player icon to the left of the info
+        this.uiGrid.placeAtIndex(7, this.icon2); // position enemy icon to the left of the 
+        
+        // point ship icons upwards
+        this.icon1.angle = 270; 
+        this.icon2.angle = 270;
     }
 
     destroyRock(bullet, rock) {
