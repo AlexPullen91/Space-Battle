@@ -42,6 +42,8 @@ class SceneMain extends Phaser.Scene {
         // determines where we can move the ship
         this.cameras.main.setBounds(0, 0, this.background.displayWidth, this.background.displayHeight);
         this.cameras.main.startFollow(this.ship, true);
+
+        this.bulletGroup = this.physics.add.group(); // group to hold the bullets
         // add rocks
         this.rockGroup = this.physics.add.group({ // add sprites into the group
             key: 'rocks',
@@ -74,6 +76,12 @@ class SceneMain extends Phaser.Scene {
         }.bind(this));
 
         this.physics.add.collider(this.rockGroup); // makes rocks collide with one another
+        this.physics.add.collider(this.bulletGroup, this.rockGroup, this.destroyRock, null, this); // allows bullets to destroy rocks
+    }
+
+    destroyRock(bullet, rock) {
+        bullet.destroy();
+        rock.destroy();
     }
 
     getTimer() { // gives a number of seconds that can be measured
@@ -110,6 +118,7 @@ class SceneMain extends Phaser.Scene {
         var dirObj = this.getDirFromAngle(this.ship.angle);
         console.log(dirObj);
         var bullet = this.physics.add.sprite(this.ship.x + dirObj.tx * 30, this.ship.y + dirObj.ty * 30, 'bullet');
+        this.bulletGroup.add(bullet); // add bullet to the group
         bullet.angle = this.ship.angle;
         bullet.body.setVelocity(dirObj.tx * 200, dirObj.ty * 200);
     }
