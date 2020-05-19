@@ -11,13 +11,10 @@ class SceneMain extends Phaser.Scene {
         emitter = new Phaser.Events.EventEmitter();
         controller = new Controller();
         model.gameOver = false;
-        model.score = 0; // score is reset to this every time play again is pressed
 
-        var soundButtons = new SoundButtons({scene: this});
 
-        this.alignGrid = new AlignGrid({scene: this, rows: 5, cols: 5});
-        // this.alignGrid.showNumbers(); // defines alignGrid class instance
-        // this.alignGrid.placeAtIndex();
+        this.shields = 100;
+        this.eshields = 100;
 
         // gives us dead center of the game
         this.centerX = game.config.width / 2;
@@ -151,22 +148,35 @@ class SceneMain extends Phaser.Scene {
 
     }
 
+    downPlayer() {
+        this.shields--;
+        this.text1.setText("Shields\n" + this.shields);
+    }
+
+    downEnemy() {
+        this.eshields--;
+        this.text2.setText("Enemy Shields\n" + this.eshields);
+    }
+
     rockHitPlayer(ship, rock) {
         var explosion = this.add.sprite(rock.x, rock.y, 'exp');
         explosion.play('boom');
         rock.destroy();
+        this.downPlayer();
     }
 
     rockHitEnemy(ship, rock) {
         var explosion = this.add.sprite(rock.x, rock.y, 'exp');
         explosion.play('boom');
         rock.destroy();
+        this.downEnemy();
     }
 
     damagePlayer(ship, bullet) {
         var explosion = this.add.sprite(this.ship.x, this.ship.y, 'exp');
         explosion.play('boom');
         bullet.destroy();
+        this.downPlayer();
     }
 
     damageEnemy(ship, bullet) {
@@ -177,6 +187,7 @@ class SceneMain extends Phaser.Scene {
         var angle2 = this.physics.moveTo(this.eship, this.ship.x, this.ship.y, 100);
         angle2 = this.toDegrees(angle2);
         this.eship.angle = angle2;
+        this.downEnemy();
     }
 
     destroyRock(bullet, rock) {
