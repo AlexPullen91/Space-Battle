@@ -15,8 +15,8 @@ class SceneMain extends Phaser.Scene {
     //
     //
 
-    this.shields = 5;
-    this.eshields = 5;
+    this.shields = 100;
+    this.eshields = 100;
     model.playerWon = true;
 
     // gives us dead center of the game
@@ -138,46 +138,24 @@ class SceneMain extends Phaser.Scene {
           child.body.setVelocity(vx * speed, vy * speed);
         }.bind(this)
       );
+      this.setRockColliders();
     }
   }
 
   setColliders() {
+    // allows player bullets to destroy rock
+    this.physics.add.collider(this.bulletGroup, this.eship, this.damageEnemy, null, this);
+    this.physics.add.collider(this.ebulletGroup, this.ship, this.damagePlayer, null, this);
+
+  }
+  
+  setRockColliders() {
     this.physics.add.collider(this.rockGroup); // makes rocks collide with one another
-    this.physics.add.collider(
-      this.bulletGroup,
-      this.rockGroup,
-      this.destroyRock,
-      null,
-      this
-    ); // allows player bullets to destroy rocks
-    this.physics.add.collider(
-      this.ebulletGroup,
-      this.rockGroup,
-      this.destroyRock,
-      null,
-      this
-    ); // allows enemy bullets to destroy rocks
-    this.physics.add.collider(
-      this.bulletGroup,
-      this.eship,
-      this.damageEnemy,
-      null,
-      this
-    );
-    this.physics.add.collider(
-      this.rockGroup,
-      this.ship,
-      this.rockHitPlayer,
-      null,
-      this
-    );
-    this.physics.add.collider(
-      this.rockGroup,
-      this.eship,
-      this.rockHitEnemy,
-      null,
-      this
-    );
+    this.physics.add.collider(this.rockGroup, this.ship, this.rockHitPlayer, null, this);
+    this.physics.add.collider(this.rockGroup, this.eship, this.rockHitEnemy, null, this);
+    this.physics.add.collider(this.bulletGroup, this.rockGroup, this.destroyRock, null, this);
+    this.physics.add.collider(this.ebulletGroup, this.rockGroup, this.destroyRock, null, this); // allows enemy bullets to destroy rocks
+    
   }
 
   makeInfo() {
