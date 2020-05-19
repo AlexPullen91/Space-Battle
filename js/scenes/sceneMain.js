@@ -35,7 +35,9 @@ class SceneMain extends Phaser.Scene {
         this.physics.world.setBounds(0, 0, this.background.displayWidth, this.background.displayHeight);
 
         this.background.setInteractive(); // make background interactive
-        this.background.on('pointerdown', this.backgroundClicked, this);
+        // adds ability to move with long click which in turn still allows for ability to fire missiles
+        this.background.on('pointerup', this.backgroundClicked, this); // bringing pointer up still activates background click which moves ship
+        this.background.on('pointerdown', this.onDown, this);
         // scrolling background
         // determines where we can move the ship
         this.cameras.main.setBounds(0, 0, this.background.displayWidth, this.background.displayHeight);
@@ -74,15 +76,34 @@ class SceneMain extends Phaser.Scene {
         this.physics.add.collider(this.rockGroup); // makes rocks collide with one another
     }
 
-    backgroundClicked() {
-        var tx = this.background.input.localX * this.background.scaleX; // target x... where on the image it was clicked
-        var ty = this.background.input.localY * this.background.scaleY; // target y... where on the image it was clicked
-        this.tx = tx;
-        this.ty = ty;
+    getTimer() { // gives a number of seconds that can be measured
+        var d = new Date();
+        return d.getTime();
+    }
 
-        var angle = this.physics.moveTo(this.ship, tx, ty, 60);
-        angle = this.toDegrees(angle);
-        this.ship.angle = angle;
+    onDown() {
+        this.downTime = this.getTimer();
+    }
+
+    backgroundClicked() {
+        // measure time between the time down and the time up
+        var elapsed = Math.abs(this.downTime - this.getTimer());
+
+        console.log(elapsed);
+        
+        if (elapsed < 300) { // move if its a fast click, shoot if it otherwise
+            var tx = this.background.input.localX * this.background.scaleX; // target x... where on the image it was clicked
+            var ty = this.background.input.localY * this.background.scaleY; // target y... where on the image it was clicked
+            this.tx = tx;
+            this.ty = ty;
+
+            var angle = this.physics.moveTo(this.ship, tx, ty, 60);
+            angle = this.toDegrees(angle);
+            this.ship.angle = angle;
+        } else {
+            console.log("FIRE!");
+        }
+       
     }
 
     toDegrees(angle) { // allows ships nose to turn to where it's headed
