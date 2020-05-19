@@ -45,6 +45,7 @@ class SceneMain extends Phaser.Scene {
         this.cameras.main.startFollow(this.ship, true);
 
         this.bulletGroup = this.physics.add.group(); // group to hold the bullets
+        this.ebulletGroup = this.physics.add.group(); // group to hold enemy bullets
         // add rocks
         this.rockGroup = this.physics.add.group({ // add sprites into the group
             key: 'rocks',
@@ -77,7 +78,8 @@ class SceneMain extends Phaser.Scene {
         }.bind(this));
 
         this.physics.add.collider(this.rockGroup); // makes rocks collide with one another
-        this.physics.add.collider(this.bulletGroup, this.rockGroup, this.destroyRock, null, this); // allows bullets to destroy rocks
+        this.physics.add.collider(this.bulletGroup, this.rockGroup, this.destroyRock, null, this); // allows player bullets to destroy rocks
+        this.physics.add.collider(this.ebulletGroup, this.rockGroup, this.destroyRock, null, this); // allows enemy bullets to destroy rocks
 
         // explosion animation
         var frameNames = this.anims.generateFrameNumbers('exp');
@@ -109,7 +111,7 @@ class SceneMain extends Phaser.Scene {
        this.text2.setOrigin(0.5, 0.5); // center text within the cell
 
         this.uiGrid = new AlignGrid({scene: this, rows: 11, cols: 11});
-        this.uiGrid.showNumbers();
+        //this.uiGrid.showNumbers();
         //
         //
         this.uiGrid.placeAtIndex(2, this.text1); // position player info on the grid
@@ -193,6 +195,7 @@ class SceneMain extends Phaser.Scene {
         }
         this.lastEBullet = this.getTimer();
         var ebullet = this.physics.add.sprite(this.eship.x, this.eship.y, 'ebullet');
+        this.ebulletGroup.add(ebullet); // enables destruction of rocks
         ebullet.body.angularVelocity = 10;
         this.physics.moveTo(ebullet, this.ship.x, this.ship.y, 100);
     }
