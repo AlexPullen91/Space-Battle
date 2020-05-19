@@ -93,12 +93,14 @@ class SceneMain extends Phaser.Scene {
             frameRate: 48,
             repeat: false
         });
+        this.eship = this.physics.add.sprite(this.centerX, 0, 'eship');
+        Align.scaleToGameW(this.eship, .25);
     }
 
     destroyRock(bullet, rock) {
         bullet.destroy();
-        this.explosion = this.add.sprite(rock.x, rock.y, 'exp');
-        this.explosion.play('boom');
+        var explosion = this.add.sprite(rock.x, rock.y, 'exp');
+        explosion.play('boom');
         rock.destroy();
     }
 
