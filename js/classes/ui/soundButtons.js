@@ -18,8 +18,8 @@ class SoundButtons extends Phaser.GameObjects.Container {
 		 this.sfxButton.x = game.config.width - this.sfxButton.width / 2;
 		 this.sfxButton.y = this.musicButton.y;
 
-        this.sfxButton.setScrollFactor(0);
-        this.musicButton.setScrollFactor(0);
+        this.sfxButton.setNoScroll();
+        this.musicButton.setNoScroll();
 
         // this detects if the music of sound is already off in the model
         if (model.musicOn == false) {
