@@ -3,7 +3,7 @@ class Model { // central storage locaton for all of the games data
         this._score = 0;
         this.soundOn = true;
         this._musicOn = true;
-        this.gameOver = false;
+        //this.gameOver = false;
     }
 
     set musicOn(val) {
