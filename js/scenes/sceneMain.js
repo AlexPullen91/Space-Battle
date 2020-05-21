@@ -8,7 +8,7 @@ class SceneMain extends Phaser.Scene {
   create() {
     emitter = new Phaser.Events.EventEmitter();
     controller = new Controller();
-    var mediaManager = new MediaManager({scene: this});
+    var mediaManager = new MediaManager({ scene: this });
 
     mediaManager.setBackgroundMusic("backgroundMusic");
     //
@@ -19,14 +19,14 @@ class SceneMain extends Phaser.Scene {
     this.eshields = 100;
     model.playerWon = true;
 
-    // gives us dead center of the game
-    this.centerX = game.config.width / 2;
-    this.centerY = game.config.height / 2;
+   
+    this.centerX = game.config.width / 2;  // gives us dead center of the game
+    this.centerY = game.config.height / 2;  // gives us dead center of the game
 
-    this.background = this.add.image(0, 0, "background");
-    this.background.setOrigin(0, 0);
+    this.background = this.add.image(0, 0, "background"); // add the background to the scene
+    this.background.setOrigin(0, 0); // set the background's x and y origin to 0
 
-    this.ship = this.physics.add.sprite(this.centerX, this.centerY, "ship");
+    this.ship = this.physics.add.sprite(this.centerX, this.centerY, "purpleship1"); // add the ship to the scene
     this.ship.body.collideWorldBounds = true;
     Align.scaleToGameW(this.ship, 0.125);
 
@@ -89,16 +89,16 @@ class SceneMain extends Phaser.Scene {
       null,
       this
     );
-    
+
     // add bad guy to game
-    this.eship = this.physics.add.sprite(this.centerX, 0, "eship");
+    this.eship = this.physics.add.sprite(this.centerX, 0, "whiteboss1");
     this.eship.body.collideWorldBounds = true;
     Align.scaleToGameW(this.eship, 0.25);
 
     this.makeInfo();
     this.setColliders();
 
-    var sb = new SoundButtons({scene: this});
+    var sb = new SoundButtons({ scene: this });
   }
 
   makeRocks() {
@@ -126,8 +126,8 @@ class SceneMain extends Phaser.Scene {
           Align.scaleToGameW(child, 0.1);
 
           // to move rocks the following code gives -1, 0 or 1
-          var vx = Math.floor(Math.random() * 2) - 1;
-          var vy = Math.floor(Math.random() * 2) - 1;
+          let vx = Math.floor(Math.random() * 2) - 1;
+          let vy = Math.floor(Math.random() * 2) - 1;
           if (vx == 0 && vy == 0) {
             // ensures all rocks move at at least a rate of 1
             vx = 1;
@@ -144,18 +144,52 @@ class SceneMain extends Phaser.Scene {
 
   setColliders() {
     // allows player bullets to destroy rock
-    this.physics.add.collider(this.bulletGroup, this.eship, this.damageEnemy, null, this);
-    this.physics.add.collider(this.ebulletGroup, this.ship, this.damagePlayer, null, this);
-
+    this.physics.add.collider(
+      this.bulletGroup,
+      this.eship,
+      this.damageEnemy,
+      null,
+      this
+    );
+    this.physics.add.collider(
+      this.ebulletGroup,
+      this.ship,
+      this.damagePlayer,
+      null,
+      this
+    );
   }
-  
+
   setRockColliders() {
     this.physics.add.collider(this.rockGroup); // makes rocks collide with one another
-    this.physics.add.collider(this.rockGroup, this.ship, this.rockHitPlayer, null, this);
-    this.physics.add.collider(this.rockGroup, this.eship, this.rockHitEnemy, null, this);
-    this.physics.add.collider(this.bulletGroup, this.rockGroup, this.destroyRock, null, this);
-    this.physics.add.collider(this.ebulletGroup, this.rockGroup, this.destroyRock, null, this); // allows enemy bullets to destroy rocks
-    
+    this.physics.add.collider(
+      this.rockGroup,
+      this.ship,
+      this.rockHitPlayer,
+      null,
+      this
+    );
+    this.physics.add.collider(
+      this.rockGroup,
+      this.eship,
+      this.rockHitEnemy,
+      null,
+      this
+    );
+    this.physics.add.collider(
+      this.bulletGroup,
+      this.rockGroup,
+      this.destroyRock,
+      null,
+      this
+    );
+    this.physics.add.collider(
+      this.ebulletGroup,
+      this.rockGroup,
+      this.destroyRock,
+      null,
+      this
+    ); // allows enemy bullets to destroy rocks
   }
 
   makeInfo() {
@@ -181,8 +215,8 @@ class SceneMain extends Phaser.Scene {
     this.uiGrid.placeAtIndex(2, this.text1); // position player info on the grid
     this.uiGrid.placeAtIndex(8, this.text2); // position enemy info on the grid
 
-    this.icon1 = this.add.image(0, 0, "ship");
-    this.icon2 = this.add.image(0, 0, "eship");
+    this.icon1 = this.add.image(0, 0, "purpleship1");
+    this.icon2 = this.add.image(0, 0, "whiteboss1");
     Align.scaleToGameW(this.icon1, 0.05);
     Align.scaleToGameW(this.icon2, 0.05);
 
@@ -205,8 +239,8 @@ class SceneMain extends Phaser.Scene {
     this.shields--;
     this.text1.setText("Shields\n" + this.shields);
     if (this.shields == 0) {
-        model.playerWon = false;
-        this.scene.start("SceneOver");
+      model.playerWon = false;
+      this.scene.start("SceneOver");
     }
   }
 
@@ -214,8 +248,8 @@ class SceneMain extends Phaser.Scene {
     this.eshields--;
     this.text2.setText("Enemy Shields\n" + this.eshields);
     if (this.eshields == 0) {
-        model.playerWon = true;
-        this.scene.start("SceneOver");
+      model.playerWon = true;
+      this.scene.start("SceneOver");
     }
   }
 
@@ -284,14 +318,14 @@ class SceneMain extends Phaser.Scene {
 
     if (elapsed < 300) {
       // move if its a fast click, shoot if it otherwise
-      var tx = this.background.input.localX * this.background.scaleX; // target x... where on the image it was clicked
-      var ty = this.background.input.localY * this.background.scaleY; // target y... where on the image it was clicked
+      var tx = this.background.input.localX * this.background.scaleX; // where on the image it was clicked
+      var ty = this.background.input.localY * this.background.scaleY; // where on the image it was clicked
       this.tx = tx;
       this.ty = ty;
 
-      var angle = this.physics.moveTo(this.ship, tx, ty, 100);
-      angle = this.toDegrees(angle);
-      this.ship.angle = angle;
+      var angle = this.physics.moveTo(this.ship, tx, ty, 100); // number in radians returned from moveTo is assigned to var angle
+      angle = this.toDegrees(angle); // toDegrees converts radians to degrees and assigns to angle variable
+      this.ship.angle = angle; // angle is assigned to ship
       //
       //
       //
@@ -320,7 +354,7 @@ class SceneMain extends Phaser.Scene {
     var bullet = this.physics.add.sprite(
       this.ship.x + dirObj.tx * 30,
       this.ship.y + dirObj.ty * 30,
-      "bullet"
+      "weapon1"
     );
     this.bulletGroup.add(bullet); // add bullet to the group
     bullet.angle = this.ship.angle;
@@ -356,8 +390,8 @@ class SceneMain extends Phaser.Scene {
     };
   }
 
-  toDegrees(angle) {
-    // allows ships nose to turn to where it's headed
+// allows ships nose to point to where it's headed
+  toDegrees(angle) { // angle is converted from radians into degrees
     return angle * (180 / Math.PI);
   }
 
@@ -368,7 +402,7 @@ class SceneMain extends Phaser.Scene {
       this.ship.body.setVelocity(0, 0); // we are close enough to our target spot to stop the ship
     }
 
-    // only allow bad guy to shoot if he is range of us
+    // only allow bad guy to shoot if he is in range of us
     var distX2 = Math.abs(this.ship.x - this.eship.x); // take ship's x and enemy ship's x
     var distY2 = Math.abs(this.ship.y - this.eship.y); // take ship's y and enemy ship's y
     if (distX2 < game.config.width / 5 && distY2 < game.config.height / 5) {

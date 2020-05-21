@@ -28,7 +28,7 @@ window.onload = function() {
             scene: [SceneLoad, SceneTitle, SceneMain, SceneOver]
         };
     } else {
-        var config = { // this makes the game fill the screen whatever size the device is
+       var config = { // this makes the game fill the screen whatever size the device is
             type: Phaser.AUTO,
             width: window.innerWidth,
             height: window.innerHeight,

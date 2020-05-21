@@ -26,13 +26,28 @@ class SceneLoad extends Phaser.Scene {
         this.load.image("musicOff", "images/ui/icons/music_off.png")
 
         this.load.image("ship", "images/player.png");
+
+        this.load.image("playerShip1", "images/playerShip1.png");
+        this.load.image("purpleship1", "images/purpleship1.png");
+
+
         this.load.image("background", "images/background.jpg");
+        
 
         this.load.spritesheet("rocks", "images/rocks.png", { frameWidth: 125, frameHeight: 100 });
         this.load.spritesheet("exp", "images/exp.png", { frameWidth: 64, frameHeight: 64 });
-        this.load.image("bullet", "images/bullet.png")
-        this.load.image("ebullet", "images/ebullet.png")
-        this.load.image("eship", "images/eship.png")
+
+
+        this.load.image("bullet", "images/bullet.png");
+        this.load.image("ebullet", "images/ebullet.png");
+        this.load.image("weapon1", "images/weapon1.png");
+
+        this.load.image("eship", "images/eship.png");
+
+        this.load.image("boss1", "images/boss1.png");
+        this.load.image("whiteboss1", "images/whiteboss1.png");
+
+
     }
 
     onProgress(value) {

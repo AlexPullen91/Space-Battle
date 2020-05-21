@@ -21,9 +21,9 @@ class SceneOver extends Phaser.Scene {
         this.alignGrid.placeAtIndex(38, this.winnerText);
 
         if (model.playerWon == true) {
-            this.winner = this.add.image(0, 0, "ship");
+            this.winner = this.add.image(0, 0, "purpleship1");
         } else {
-            this.winner = this.add.image(0, 0, "eship");
+            this.winner = this.add.image(0, 0, "whiteboss1");
         }
         Align.scaleToGameW(this.winner, .25);
         this.winner.angle = 270;

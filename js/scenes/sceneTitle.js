@@ -19,7 +19,7 @@ class SceneTitle extends Phaser.Scene {
         Align.scaleToGameW(title, .8); // scales down the title
         this.alignGrid.placeAtIndex(27, title); // places it central
 
-        var ship = this.add.image(0, 0, 'ship');
+        var ship = this.add.image(0, 0, 'purpleship1');
         this.alignGrid.placeAtIndex(60, ship)
         Align.scaleToGameW(ship, .125);
 
