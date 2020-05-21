@@ -39,7 +39,7 @@ window.onload = function() {
                     debug: false
                 }
             },
-            scene: [LoadMenu, MainMenu, FinalBoss, GameOver]
+            scene: [LoadMenu, MainMenu, FirstBoss, SecondBoss, FinalBoss, GameOver]
         };
 
     }
