@@ -1,6 +1,6 @@
-class SceneLoad extends Phaser.Scene {
+class LoadMenu extends Phaser.Scene {
     constructor() {
-        super('SceneLoad');
+        super('LoadMenu');
     }
 
     preload() {
@@ -27,8 +27,7 @@ class SceneLoad extends Phaser.Scene {
 
         this.load.image("ship", "images/player.png");
 
-        this.load.image("playerShip1", "images/playerShip1.png");
-        this.load.image("purpleship1", "images/purpleship1.png");
+        this.load.image("purpleship", "images/purpleship.png");
 
 
         this.load.image("background", "images/background.jpg");
@@ -44,8 +43,10 @@ class SceneLoad extends Phaser.Scene {
 
         this.load.image("eship", "images/eship.png");
 
-        this.load.image("boss1", "images/boss1.png");
-        this.load.image("whiteboss1", "images/whiteboss1.png");
+        
+        this.load.image("whiteboss", "images/whiteboss.png");
+        this.load.image("tanboss", "images/tanboss.png");
+        this.load.image("blueboss", "images/blueboss.png");
 
 
     }
@@ -73,6 +74,6 @@ class SceneLoad extends Phaser.Scene {
             repeat: false,
         });
         
-        this.scene.start("SceneTitle");
+        this.scene.start("MainMenu");
     }
 }

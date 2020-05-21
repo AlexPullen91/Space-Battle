@@ -25,7 +25,7 @@ window.onload = function() {
                     debug: false
                 }
             },
-            scene: [SceneLoad, SceneTitle, SceneMain, SceneOver]
+            scene: [LoadMenu, MainMenu, FirstBoss, SecondBoss, FinalBoss, GameOver]
         };
     } else {
        var config = { // this makes the game fill the screen whatever size the device is
@@ -39,7 +39,7 @@ window.onload = function() {
                     debug: false
                 }
             },
-            scene: [SceneLoad, SceneTitle, SceneMain, SceneOver]
+            scene: [LoadMenu, MainMenu, FinalBoss, GameOver]
         };
 
     }

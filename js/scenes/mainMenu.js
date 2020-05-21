@@ -1,6 +1,6 @@
-class SceneTitle extends Phaser.Scene {
+class MainMenu extends Phaser.Scene {
     constructor() {
-        super('SceneTitle');
+        super('MainMenu');
     }
 
     preload() {
@@ -11,7 +11,7 @@ class SceneTitle extends Phaser.Scene {
     create() {
         emitter = new Phaser.Events.EventEmitter(); // allows us to talk globally to other parts of our game
         controller = new Controller(); // instance of emitter has to exist before use of controller because its used inside the controller
-        this.add.image(0, 0, 'background').setOrigin(0.5, 0.5);
+        this.add.image(0, 0, 'background').setOrigin(0, 0);
         this.alignGrid = new AlignGrid({rows: 11, cols: 11, scene: this}); // adds grid to the scene
         //this.alignGrid.showNumbers();
 
@@ -19,7 +19,7 @@ class SceneTitle extends Phaser.Scene {
         Align.scaleToGameW(title, .8); // scales down the title
         this.alignGrid.placeAtIndex(27, title); // places it central
 
-        var ship = this.add.image(0, 0, 'purpleship1');
+        var ship = this.add.image(0, 0, 'purpleship');
         this.alignGrid.placeAtIndex(60, ship)
         Align.scaleToGameW(ship, .125);
 
@@ -35,7 +35,7 @@ class SceneTitle extends Phaser.Scene {
     }
 
     startGame() {
-        this.scene.start('SceneMain');
+        this.scene.start('FirstBoss');
     }
 
     update() {

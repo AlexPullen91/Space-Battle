@@ -1,6 +1,6 @@
-class SceneMain extends Phaser.Scene {
+class FinalBoss extends Phaser.Scene {
   constructor() {
-    super("SceneMain");
+    super("FinalBoss");
   }
 
   preload() {}
@@ -16,7 +16,7 @@ class SceneMain extends Phaser.Scene {
     //
 
     this.shields = 100;
-    this.eshields = 100;
+    this.eshields = 15;
     model.playerWon = true;
 
    
@@ -26,7 +26,7 @@ class SceneMain extends Phaser.Scene {
     this.background = this.add.image(0, 0, "background"); // add the background to the scene
     this.background.setOrigin(0, 0); // set the background's x and y origin to 0
 
-    this.ship = this.physics.add.sprite(this.centerX, this.centerY, "purpleship1"); // add the ship to the scene
+    this.ship = this.physics.add.sprite(this.centerX, this.centerY, "purpleship"); // add the ship to the scene
     this.ship.body.collideWorldBounds = true;
     Align.scaleToGameW(this.ship, 0.125);
 
@@ -91,7 +91,7 @@ class SceneMain extends Phaser.Scene {
     );
 
     // add bad guy to game
-    this.eship = this.physics.add.sprite(this.centerX, 0, "whiteboss1");
+    this.eship = this.physics.add.sprite(this.centerX, 0, "whiteboss");
     this.eship.body.collideWorldBounds = true;
     Align.scaleToGameW(this.eship, 0.25);
 
@@ -215,8 +215,8 @@ class SceneMain extends Phaser.Scene {
     this.uiGrid.placeAtIndex(2, this.text1); // position player info on the grid
     this.uiGrid.placeAtIndex(8, this.text2); // position enemy info on the grid
 
-    this.icon1 = this.add.image(0, 0, "purpleship1");
-    this.icon2 = this.add.image(0, 0, "whiteboss1");
+    this.icon1 = this.add.image(0, 0, "purpleship");
+    this.icon2 = this.add.image(0, 0, "whiteboss");
     Align.scaleToGameW(this.icon1, 0.05);
     Align.scaleToGameW(this.icon2, 0.05);
 
@@ -240,7 +240,7 @@ class SceneMain extends Phaser.Scene {
     this.text1.setText("Shields\n" + this.shields);
     if (this.shields == 0) {
       model.playerWon = false;
-      this.scene.start("SceneOver");
+      this.scene.start("GameOver");
     }
   }
 
@@ -249,7 +249,7 @@ class SceneMain extends Phaser.Scene {
     this.text2.setText("Enemy Shields\n" + this.eshields);
     if (this.eshields == 0) {
       model.playerWon = true;
-      this.scene.start("SceneOver");
+      this.scene.start("GameOver");
     }
   }
 

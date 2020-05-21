@@ -1,6 +1,6 @@
-class SceneOver extends Phaser.Scene {
+class GameOver extends Phaser.Scene {
     constructor() {
-        super('SceneOver');
+        super('GameOver');
     }
 
     preload() {
@@ -8,7 +8,7 @@ class SceneOver extends Phaser.Scene {
     }
 
     create() {
-        this.add.image(0, 0, 'background').setOrigin(0.5, 0.5);
+        this.add.image(0, 0, 'background').setOrigin(0, 0);
         this.alignGrid = new AlignGrid({rows:11, cols:11, scene:this}); // adds grid to the scene
         //this.alignGrid.showNumbers();
 
@@ -21,9 +21,9 @@ class SceneOver extends Phaser.Scene {
         this.alignGrid.placeAtIndex(38, this.winnerText);
 
         if (model.playerWon == true) {
-            this.winner = this.add.image(0, 0, "purpleship1");
+            this.winner = this.add.image(0, 0, "purpleship");
         } else {
-            this.winner = this.add.image(0, 0, "whiteboss1");
+            this.winner = this.add.image(0, 0, "whiteboss");
         }
         Align.scaleToGameW(this.winner, .25);
         this.winner.angle = 270;
@@ -39,7 +39,7 @@ class SceneOver extends Phaser.Scene {
     }
 
     startGame() {
-        this.scene.start('SceneMain');
+        this.scene.start('FirstBoss');
     }
 
     update() {
