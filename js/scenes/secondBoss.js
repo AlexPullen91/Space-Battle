@@ -28,7 +28,7 @@ class SecondBoss extends Phaser.Scene {
 
     this.ship = this.physics.add.sprite(this.centerX, this.centerY, "purpleship"); // add the ship to the scene
     this.ship.body.collideWorldBounds = true;
-    Align.scaleToGameW(this.ship, 0.125);
+    Align.scaleToGameW(this.ship, 0.105);
 
     // scales background with the ship
     this.background.scaleX = this.ship.scaleX;
@@ -93,7 +93,7 @@ class SecondBoss extends Phaser.Scene {
     // add bad guy to game
     this.eship = this.physics.add.sprite(this.centerX, 0, "blueboss");
     this.eship.body.collideWorldBounds = true;
-    Align.scaleToGameW(this.eship, 0.25);
+    Align.scaleToGameW(this.eship, 0.20);
 
     this.makeInfo();
     this.setColliders();
