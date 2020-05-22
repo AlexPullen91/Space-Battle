@@ -354,7 +354,7 @@ class FirstBoss extends Phaser.Scene {
     var bullet = this.physics.add.sprite(
       this.ship.x + dirObj.tx * 30,
       this.ship.y + dirObj.ty * 30,
-      "weapon1"
+      "plaser"
     );
     this.bulletGroup.add(bullet); // add bullet to the group
     bullet.angle = this.ship.angle;
