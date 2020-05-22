@@ -372,7 +372,7 @@ class SecondBoss extends Phaser.Scene {
     var ebullet = this.physics.add.sprite(
       this.eship.x,
       this.eship.y,
-      "ebullet"
+      "bosslaser2"
     );
     this.ebulletGroup.add(ebullet); // enables destruction of rocks
     ebullet.body.angularVelocity = 10;

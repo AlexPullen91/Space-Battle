@@ -33,12 +33,17 @@ class LoadMenu extends Phaser.Scene {
         this.load.image("background", "images/background.jpg");
         
 
-        this.load.spritesheet("rocks", "images/rocks.png", { frameWidth: 125, frameHeight: 100 });
+        //this.load.spritesheet("rocks", "images/rocks.png", { frameWidth: 125, frameHeight: 100 });
+        this.load.spritesheet("rocks", "images/asteroids.png", { frameWidth: 125, frameHeight: 100 });
         this.load.spritesheet("exp", "images/exp.png", { frameWidth: 64, frameHeight: 64 });
 
 
         this.load.image("bullet", "images/bullet.png");
         this.load.image("ebullet", "images/ebullet.png");
+
+        this.load.image("bosslaser1", "images/bosslaser1.png");
+        this.load.image("bosslaser2", "images/bosslaser2.png");
+        this.load.image("bosslaser3", "images/bosslaser3.png");
         this.load.image("weapon1", "images/weapon1.png");
 
         this.load.image("eship", "images/eship.png");
@@ -62,15 +67,15 @@ class LoadMenu extends Phaser.Scene {
         var frameNames = this.anims.generateFrameNumbers("exp");
 
         // plays explosion animation from small to big and big to small
-        var f2 = frameNames.slice();
-        f2.reverse();
+        var f2 = frameNames.slice(); // make a copy of the array
+        f2.reverse(); // reverse the array
 
-        var f3 = f2.concat(frameNames);
+        var f3 = f2.concat(frameNames); // put to frame arrays together
 
         this.anims.create({
             key: "boom",
             frames: f3,
-            frameRate: 48,
+            frameRate: 32,
             repeat: false,
         });
         
