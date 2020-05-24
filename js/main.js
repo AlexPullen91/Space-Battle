@@ -1,4 +1,4 @@
-var game;
+var game; // make game a global object
 var model;
 var emitter; // allows different parts of the game to talk and listen to each other
 var G; // stands for game
@@ -46,5 +46,5 @@ window.onload = function() {
     G = new Constants();
     model = new Model();
     model.isMobile = isMobile;
-    game = new Phaser.Game(config);
+    game = new Phaser.Game(config); // create game object
 }

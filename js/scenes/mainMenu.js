@@ -35,7 +35,7 @@ class MainMenu extends Phaser.Scene {
     }
 
     startGame() {
-        this.scene.start('FirstBoss');
+        this.scene.start('Intro');
     }
 
     update() {

@@ -1,6 +1,6 @@
-class FirstBoss extends Phaser.Scene {
-  constructor() {
-    super("FirstBoss");
+class FirstBoss extends Phaser.Scene { // creates a scene to be referenced in main.js
+  constructor() { // create instance of the scene
+    super("FirstBoss"); // call the constructor in the parent with the name of the scene
   }
 
   preload() {}
