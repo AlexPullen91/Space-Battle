@@ -1,6 +1,6 @@
-class SecondBoss extends Phaser.Scene {
+class BossTwo extends Phaser.Scene {
   constructor() {
-    super("SecondBoss");
+    super("BossTwo");
   }
 
   preload() {}
@@ -249,7 +249,7 @@ class SecondBoss extends Phaser.Scene {
     this.text2.setText("Enemy Shields\n" + this.eshields);
     if (this.eshields == 0) {
       model.playerWon = true;
-      this.scene.start("FinalBoss");
+      this.scene.start("BossTwoDown");
     }
   }
 

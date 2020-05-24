@@ -3,9 +3,6 @@ class Intro extends Phaser.Scene {
         super('Intro');
     }
 
-    preload() {
-        
-    }
 
     create() {
         emitter = new Phaser.Events.EventEmitter(); // allows us to talk globally to other parts of our game
@@ -20,7 +17,8 @@ class Intro extends Phaser.Scene {
 
        // var myText = game.add.text(x,y,text);
         //var someText = this.add.text(0,0,"Way out on the seldom seen fringes of the Andromeda galaxy a ragtag band of fearsome pirates have become separated from the rest of their crew. Having been in hot pursuit of stragglers from a recently ambushed trade convoy en route to one of the deep space mining colonies, they have now found themselves perilously off the beaten path. The trail's gone cold. Reluctantly they decide it's time to cut their losses and turn to head back, when suddenly radar alerts them to incoming projectiles. They're under attack! Never one to back down from a fight they divert power to weapons systems and turn to engage their mysterious foes head on.").setOrigin(0.5, 0.5);
-        
+
+
         var myText = "Way out on the seldom seen fringes of the Andromeda galaxy a ragtag band of fearsome pirates have become separated from the rest of their crew. Having been in hot pursuit of stragglers from a recently ambushed trade convoy en route to one of the deep space mining colonies, they have now found themselves perilously off the beaten path. The trail's gone cold. Reluctantly they decide it's time to cut their losses and turn to head back, when suddenly radar alerts them to incoming projectiles. They're under attack! Never one to back down from a fight they divert power to weapons systems and turn to engage their mysterious foes head on.";
         var style = {
             'color': 'white',
@@ -48,10 +46,7 @@ class Intro extends Phaser.Scene {
     }
 
     startGame() {
-        this.scene.start('FirstBoss');
+        this.scene.start('BossOne');
     }
 
-    update() {
-
-    }
 }
