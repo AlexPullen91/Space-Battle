@@ -25,7 +25,7 @@ window.onload = function() {
                     debug: false
                 }
             },
-            scene: [LoadMenu, MainMenu, Intro, FirstBoss, SecondBoss, FinalBoss, GameOver] // game scenes to be loaded 
+            scene: [LoadMenu, MainMenu, Intro, FirstBoss, BossOneDown, SecondBoss, FinalBoss, GameOver] // game scenes to be loaded 
         };
     } else {
        var config = { // this makes the game fill the screen whatever size the device is
@@ -39,7 +39,7 @@ window.onload = function() {
                     debug: false
                 }
             },
-            scene: [LoadMenu, MainMenu, Intro, FirstBoss, SecondBoss, FinalBoss, GameOver]
+            scene: [LoadMenu, MainMenu, Intro, FirstBoss, BossOneDown, SecondBoss, FinalBoss, GameOver]
         };
 
     }

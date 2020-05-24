@@ -3,8 +3,6 @@ class FirstBoss extends Phaser.Scene { // creates a scene to be referenced in ma
     super("FirstBoss"); // call the constructor in the parent with the name of the scene
   }
 
-  preload() {}
-
   create() {
     emitter = new Phaser.Events.EventEmitter();
     controller = new Controller();
@@ -249,7 +247,7 @@ class FirstBoss extends Phaser.Scene { // creates a scene to be referenced in ma
     this.text2.setText("Enemy Shields\n" + this.eshields);
     if (this.eshields == 0) {
       model.playerWon = true;
-      this.scene.start("SecondBoss");
+      this.scene.start("BossOneDown");
     }
   }
 

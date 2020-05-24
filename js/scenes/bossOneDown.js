@@ -1,6 +1,6 @@
-class Intro extends Phaser.Scene {
+class BossOneDown extends Phaser.Scene {
     constructor() {
-        super('Intro');
+        super('BossOneDown');
     }
 
     preload() {
@@ -21,7 +21,7 @@ class Intro extends Phaser.Scene {
        // var myText = game.add.text(x,y,text);
         //var someText = this.add.text(0,0,"Way out on the seldom seen fringes of the Andromeda galaxy a ragtag band of fearsome pirates have become separated from the rest of their crew. Having been in hot pursuit of stragglers from a recently ambushed trade convoy en route to one of the deep space mining colonies, they have now found themselves perilously off the beaten path. The trail's gone cold. Reluctantly they decide it's time to cut their losses and turn to head back, when suddenly radar alerts them to incoming projectiles. They're under attack! Never one to back down from a fight they divert power to weapons systems and turn to engage their mysterious foes head on.").setOrigin(0.5, 0.5);
         
-        var myText = "Way out on the seldom seen fringes of the Andromeda galaxy a ragtag band of fearsome pirates have become separated from the rest of their crew. Having been in hot pursuit of stragglers from a recently ambushed trade convoy en route to one of the deep space mining colonies, they have now found themselves perilously off the beaten path. The trail's gone cold. Reluctantly they decide it's time to cut their losses and turn to head back, when suddenly radar alerts them to incoming projectiles. They're under attack! Never one to back down from a fight they divert power to weapons systems and turn to engage their mysterious foes head on.";
+        var bossDown = "With that final crushing blow the enemy ship's onslaught comes to an and succumbs to the pirate's superior piloting skills.";
         var style = {
             'color': 'white',
             'fontSize': '24px',
@@ -31,8 +31,8 @@ class Intro extends Phaser.Scene {
         }
         this.tw = new TypeWriter({
             'scene': this,
-            'text': myText,
-            'speed': .5,
+            'text': bossDown,
+            'speed': .2,
             'style': style
         });
 
@@ -40,7 +40,7 @@ class Intro extends Phaser.Scene {
 
 
         // button to start the game
-        var btnStart = new FlatButton({scene: this, key: 'button1', text: 'start', event: 'start_game'})
+        var btnStart = new FlatButton({scene: this, key: 'button1', text: 'continue', event: 'start_game'})
         this.alignGrid.placeAtIndex(93, btnStart);
 
         emitter.on('start_game', this.startGame, this); // listen for start game event
@@ -50,7 +50,7 @@ class Intro extends Phaser.Scene {
     }
 
     startGame() {
-        this.scene.start('FirstBoss');
+        this.scene.start('SecondBoss');
     }
 
     update() {

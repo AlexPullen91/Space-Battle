@@ -32,21 +32,19 @@ class Intro extends Phaser.Scene {
         this.tw = new TypeWriter({
             'scene': this,
             'text': myText,
-            'speed': .5,
+            'speed': .1,
             'style': style
         });
-
-        this.alignGrid.placeAtIndex(12, myText)
 
 
         // button to start the game
         var btnStart = new FlatButton({scene: this, key: 'button1', text: 'start', event: 'start_game'})
-        this.alignGrid.placeAtIndex(93, btnStart);
+        this.alignGrid.placeAtIndex(115, btnStart);
 
         emitter.on('start_game', this.startGame, this); // listen for start game event
-        var mediaManager = new MediaManager({scene: this});
+        // var mediaManager = new MediaManager({scene: this});
 
-        var sb = new SoundButtons({scene: this});
+        // var sb = new SoundButtons({scene: this});
     }
 
     startGame() {
