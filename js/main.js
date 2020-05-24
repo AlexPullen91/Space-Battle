@@ -14,18 +14,18 @@ window.onload = function() {
     //
     //
     if (isMobile == -1) { // this means we're on laptop or desktop
-        var config = {
-            type: Phaser.AUTO,
-            width: 480,
-            height: 640,
-            parent: 'phaser-game',
+        var config = { // config object containing info on how to set up the game
+            type: Phaser.AUTO, // graphics mode, AUTO lets browser decide between Canvas or WebGL
+            width: 480, // width of the game
+            height: 640, // height of the game
+            parent: 'phaser-game', // place the game anywhere you want in HTML code
             physics: {
                 default: 'arcade',
                 arcade: {
                     debug: false
                 }
             },
-            scene: [LoadMenu, MainMenu, FirstBoss, SecondBoss, FinalBoss, GameOver]
+            scene: [LoadMenu, MainMenu, Intro, FirstBoss, SecondBoss, FinalBoss, GameOver] // game scenes to be loaded 
         };
     } else {
        var config = { // this makes the game fill the screen whatever size the device is
@@ -39,7 +39,7 @@ window.onload = function() {
                     debug: false
                 }
             },
-            scene: [LoadMenu, MainMenu, FirstBoss, SecondBoss, FinalBoss, GameOver]
+            scene: [LoadMenu, MainMenu, Intro, FirstBoss, SecondBoss, FinalBoss, GameOver]
         };
 
     }
