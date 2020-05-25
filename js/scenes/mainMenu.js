@@ -23,10 +23,14 @@ class MainMenu extends Phaser.Scene {
         this.alignGrid.placeAtIndex(60, ship)
         Align.scaleToGameW(ship, .125);
 
+        var howToMove = this.add.text(0, 0, "Click or touch where you want to move the ship").setOrigin(0.5, 0.5);
+        this.alignGrid.placeAtIndex(82, howToMove);
+        var howToShoot = this.add.text(0, 0, "Hold to shoot").setOrigin(0.5, 0.5);
+        this.alignGrid.placeAtIndex(93, howToShoot);
 
         // button to start the game
         var btnStart = new FlatButton({scene: this, key: 'button1', text: 'start', event: 'start_game'})
-        this.alignGrid.placeAtIndex(93, btnStart);
+        this.alignGrid.placeAtIndex(104, btnStart);
 
         emitter.on('start_game', this.startGame, this); // listen for start game event
         var mediaManager = new MediaManager({scene: this});
