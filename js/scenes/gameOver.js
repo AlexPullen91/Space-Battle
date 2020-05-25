@@ -16,10 +16,10 @@ class GameOver extends Phaser.Scene {
         this.winnerText.setOrigin(0.5, 0.5);
         this.alignGrid.placeAtIndex(38, this.winnerText);
 
-        if (model.playerWon == true) {
-            this.winner = this.add.image(0, 0, "purpleship");
+        if (model.playerWon == true) { 
+            this.winner = this.add.image(0, 0, "purpleship"); // add player ship icon if they won
         } else {
-            this.winner = this.add.image(0, 0, "whiteboss");
+            this.winner = this.add.image(0, 0, "whiteboss"); // add enemy ship icon if they won
         }
         Align.scaleToGameW(this.winner, .25);
         this.winner.angle = 270;
