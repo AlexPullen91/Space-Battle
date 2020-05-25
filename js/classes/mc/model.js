@@ -8,8 +8,8 @@ class Model { // central storage locaton for all of the games data
     set musicOn(val) {
         this._musicOn = val;
         console.log("music changed");
-        emitter.emit(G.MUSIC_CHANGED);
-        //mediaManager.musicChanged(); potential audio fix
+        //emitter.emit(G.MUSIC_CHANGED);
+        mediaManager.musicChanged();
     }
 
     get musicOn() {

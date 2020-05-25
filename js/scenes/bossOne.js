@@ -6,7 +6,7 @@ class BossOne extends Phaser.Scene { // creates a scene to be referenced in main
   create() {
     emitter = new Phaser.Events.EventEmitter();
     controller = new Controller();
-    var mediaManager = new MediaManager({ scene: this });
+    mediaManager = new MediaManager({ scene: this });
 
     mediaManager.setBackgroundMusic("backgroundMusic");
     //
@@ -254,7 +254,8 @@ class BossOne extends Phaser.Scene { // creates a scene to be referenced in main
   rockHitPlayer(ship, rock) {
     var explosion = this.add.sprite(rock.x, rock.y, "exp");
     explosion.play("boom");
-    emitter.emit(G.PLAY_SOUND, "explode");
+    mediaManager.playSound("explode");
+    //emitter.emit(G.PLAY_SOUND, "explode");
     rock.destroy();
     this.makeRocks();
     this.downPlayer();
@@ -263,7 +264,8 @@ class BossOne extends Phaser.Scene { // creates a scene to be referenced in main
   rockHitEnemy(ship, rock) {
     var explosion = this.add.sprite(rock.x, rock.y, "exp");
     explosion.play("boom");
-    emitter.emit(G.PLAY_SOUND, "explode");
+    mediaManager.playSound("explode");
+    //emitter.emit(G.PLAY_SOUND, "explode");
     rock.destroy();
     this.makeRocks();
     this.downEnemy();
@@ -272,7 +274,8 @@ class BossOne extends Phaser.Scene { // creates a scene to be referenced in main
   damagePlayer(ship, bullet) {
     var explosion = this.add.sprite(this.ship.x, this.ship.y, "exp");
     explosion.play("boom");
-    emitter.emit(G.PLAY_SOUND, "explode");
+    mediaManager.playSound("explode");
+    //emitter.emit(G.PLAY_SOUND, "explode");
     bullet.destroy();
     this.downPlayer();
   }
@@ -280,7 +283,8 @@ class BossOne extends Phaser.Scene { // creates a scene to be referenced in main
   damageEnemy(ship, bullet) {
     var explosion = this.add.sprite(bullet.x, bullet.y, "exp");
     explosion.play("boom");
-    emitter.emit(G.PLAY_SOUND, "explode");
+    mediaManager.playSound("explode");
+    //emitter.emit(G.PLAY_SOUND, "explode");
     bullet.destroy();
     // when enemy ship is hit it speeds up and hunts down player
     var angle2 = this.physics.moveTo(this.eship, this.ship.x, this.ship.y, 100);
@@ -293,7 +297,8 @@ class BossOne extends Phaser.Scene { // creates a scene to be referenced in main
     bullet.destroy();
     var explosion = this.add.sprite(rock.x, rock.y, "exp");
     explosion.play("boom");
-    emitter.emit(G.PLAY_SOUND, "explode");
+    mediaManager.playSound("explode");
+    //emitter.emit(G.PLAY_SOUND, "explode");
     rock.destroy();
     this.makeRocks();
   }
@@ -355,7 +360,8 @@ class BossOne extends Phaser.Scene { // creates a scene to be referenced in main
     this.bulletGroup.add(bullet); // add bullet to the group
     bullet.angle = this.ship.angle;
     bullet.body.setVelocity(dirObj.tx * 200, dirObj.ty * 200);
-    emitter.emit(G.PLAY_SOUND, "laser");
+    mediaManager.playSound("laser");
+    //emitter.emit(G.PLAY_SOUND, "laser");
   }
 
   fireEBullet() {
@@ -373,7 +379,8 @@ class BossOne extends Phaser.Scene { // creates a scene to be referenced in main
     this.ebulletGroup.add(ebullet); // enables destruction of rocks
     ebullet.body.angularVelocity = 10;
     this.physics.moveTo(ebullet, this.ship.x, this.ship.y, 100);
-    emitter.emit(G.PLAY_SOUND, "enemyShoot");
+    mediaManager.playSound("enemyShoot");
+    //emitter.emit(G.PLAY_SOUND, "enemyShoot");
   }
 
   getDirFromAngle(angle) {
