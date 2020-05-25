@@ -4,7 +4,7 @@ class GameOver extends Phaser.Scene {
     }
 
     create() {
-        this.add.image(0, 0, 'background').setOrigin(0, 0);
+        this.add.image(0, 0, 'background3').setOrigin(0, 0);
         this.alignGrid = new AlignGrid({rows:11, cols:11, scene:this}); // adds grid to the scene
         //this.alignGrid.showNumbers();
 

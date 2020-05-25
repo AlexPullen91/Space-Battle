@@ -7,7 +7,7 @@ class Intro extends Phaser.Scene {
     create() {
         emitter = new Phaser.Events.EventEmitter(); // allows us to talk globally to other parts of our game
         controller = new Controller(); // instance of emitter has to exist before use of controller because its used inside the controller
-        this.add.image(0, 0, 'background').setOrigin(0, 0);
+        this.add.image(0, 0, 'background1').setOrigin(0, 0);
         this.alignGrid = new AlignGrid({rows: 11, cols: 11, scene: this}); // adds grid to the scene
         //this.alignGrid.showNumbers();
 

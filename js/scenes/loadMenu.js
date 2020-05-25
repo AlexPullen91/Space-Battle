@@ -11,34 +11,37 @@ class LoadMenu extends Phaser.Scene {
         this.progText.setOrigin(0.5, 0.5);
         this.load.on("progress", this.onProgress, this);
 
-        this.load.image("button1", "images/ui/buttons/2/1.png");
+        this.load.image("button1", "assets/images/ui/buttons/2/1.png");
 
-        this.load.audio("explode", ["audio/explode.wav", "audio/explode.ogg"]);
-        this.load.audio("enemyShoot", ["audio/enemyShoot.wav", "audio/enemyShoot.ogg"]);
-        this.load.audio("laser", ["audio/laser.wav", "audio/laser.ogg"]);
-        this.load.audio("backgroundMusic", ["audio/background.mp3", "audio/background.ogg"]);
+        this.load.audio("explode", ["assets/audio/explode.wav", "assets/audio/explode.ogg"]);
+        this.load.audio("enemyShoot", ["assets/audio/enemyShoot.wav", "assets/audio/enemyShoot.ogg"]);
+        this.load.audio("laser", ["assets/audio/laser.wav", "assets/audio/laser.ogg"]);
+        this.load.audio("backgroundMusic", ["assets/audio/background.mp3", "assets/audio/background.ogg"]);
 
-        this.load.image("toggleBack", "images/ui/toggles/1.png");
-        this.load.image("sfxOff", "images/ui/icons/sfx_off.png");
-        this.load.image("sfxOn", "images/ui/icons/sfx_on.png");
-        this.load.image("musicOn", "images/ui/icons/music_on.png");
-        this.load.image("musicOff", "images/ui/icons/music_off.png");
+        this.load.image("toggleBack", "assets/images/ui/toggles/1.png");
+        this.load.image("sfxOff", "assets/images/ui/icons/sfx_off.png");
+        this.load.image("sfxOn", "assets/images/ui/icons/sfx_on.png");
+        this.load.image("musicOn", "assets/images/ui/icons/music_on.png");
+        this.load.image("musicOff", "assets/images/ui/icons/music_off.png");
 
-        this.load.image("purpleship", "images/purpleship.png");
+        this.load.image("purpleship", "assets/images/purpleship.png");
 
-        this.load.image("background", "images/background.jpg");
+        //this.load.image("background", "images/background.jpg");
+        this.load.image("background1", "assets/images/DSM-bg1.png");
+        this.load.image("background2", "assets/images/DSM-bg4.png");
+        this.load.image("background3", "assets/images/DSM-bg6.png");
 
-        this.load.spritesheet("rocks", "images/asteroids.png", { frameWidth: 125, frameHeight: 100 });
-        this.load.spritesheet("exp", "images/exp.png", { frameWidth: 64, frameHeight: 64 });
+        this.load.spritesheet("rocks", "assets/images/asteroids.png", { frameWidth: 125, frameHeight: 100 });
+        this.load.spritesheet("exp", "assets/images/exp.png", { frameWidth: 64, frameHeight: 64 });
 
-        this.load.image("bosslaser1", "images/bosslaser1.png");
-        this.load.image("bosslaser2", "images/bosslaser2.png");
-        this.load.image("bosslaser3", "images/bosslaser3.png");
-        this.load.image("plaser", "images/plaser.png");
+        this.load.image("bosslaser1", "assets/images/bosslaser1.png");
+        this.load.image("bosslaser2", "assets/images/bosslaser2.png");
+        this.load.image("bosslaser3", "assets/images/bosslaser3.png");
+        this.load.image("plaser", "assets/images/plaser.png");
         
-        this.load.image("whiteboss", "images/whiteboss.png");
-        this.load.image("tanboss", "images/tanboss.png");
-        this.load.image("blueboss", "images/blueboss.png");
+        this.load.image("whiteboss", "assets/images/whiteboss.png");
+        this.load.image("tanboss", "assets/images/tanboss.png");
+        this.load.image("blueboss", "assets/images/blueboss.png");
 
 
     }

@@ -23,7 +23,7 @@ class FinalBoss extends Phaser.Scene {
     this.centerX = game.config.width / 2;  // gives us dead center of the game
     this.centerY = game.config.height / 2;  // gives us dead center of the game
 
-    this.background = this.add.image(0, 0, "background"); // add the background to the scene
+    this.background = this.add.image(0, 0, "background3"); // add the background to the scene
     this.background.setOrigin(0, 0); // set the background's x and y origin to 0
 
     this.ship = this.physics.add.sprite(this.centerX, this.centerY, "purpleship"); // add the ship to the scene

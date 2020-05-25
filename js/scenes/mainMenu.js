@@ -4,15 +4,15 @@ class MainMenu extends Phaser.Scene {
     }
 
     preload() {
-        this.load.image("button1", "images/ui/buttons/2/1.png");
-    	this.load.image("title", "images/title.png")
+        this.load.image("button1", "assets/images/ui/buttons/2/1.png");
+    	this.load.image("title", "assets/images/Deep-Space.png")
     }
 
     create() {
         emitter = new Phaser.Events.EventEmitter(); // allows us to talk globally to other parts of our game
         controller = new Controller(); // instance of emitter has to exist before use of controller because its used inside the controller
         
-        this.add.image(0, 0, 'background').setOrigin(0, 0); // add background image to scene
+        this.add.image(0, 0, 'background1').setOrigin(0, 0); // add background image to scene
         this.alignGrid = new AlignGrid({rows: 11, cols: 11, scene: this}); // adds grid to the scene
         //this.alignGrid.showNumbers();
 
