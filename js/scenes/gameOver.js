@@ -35,7 +35,7 @@ class GameOver extends Phaser.Scene {
     }
 
     startGame() {
-        this.scene.start('mainMenu');
+        this.scene.start('MainMenu');
     }
 
     update() {

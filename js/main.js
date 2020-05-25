@@ -1,9 +1,8 @@
 var game; // make game a global object
-var model;
-var emitter; // allows different parts of the game to talk and listen to each other
-var G; // stands for game
-var controller; 
-var mediaManager;
+var model; // make model a global object
+var emitter; // make emitter a global object
+var controller;  // make controller a global object
+var mediaManager; // make media manager a global object
 
 window.onload = function() {
 
