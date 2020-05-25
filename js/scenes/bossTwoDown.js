@@ -11,7 +11,7 @@ class BossTwoDown extends Phaser.Scene {
         //this.alignGrid.showNumbers();
        
         var bossDown = "Another one bites the dust. A few more scrapes this time around but you don't gain a reputation for bruising and pillaging without getting your hands dirty. The pirate has barely exhaled before they notice yet another even more sizable blip pinging on radar. Casting their gaze outwards past the nose of their ship they see the the increasingly large and ominous outline of what must be another relentless foe.";
-        // var nextBoss = "They scour the area looking for any sign of loot to try and make this deadly skirmish worth while when they suddenly realise another blip on their radar closing in..."
+        
         var style = {
             'color': 'white',
             'fontSize': '24px',
@@ -25,15 +25,6 @@ class BossTwoDown extends Phaser.Scene {
             'speed': .2,
             'style': style
         });
-        // this.twNextBoss = new TypeWriter({
-        //     'scene': this,
-        //     'text': nextBoss,
-        //     'speed': .2,
-        //     'style': style
-        // });
-
-        //this.alignGrid.placeAtIndex(27, myText)
-
 
         // button to start the game
         var btnStart = new FlatButton({scene: this, key: 'button1', text: 'continue', event: 'start_game'})
@@ -41,8 +32,6 @@ class BossTwoDown extends Phaser.Scene {
 
         emitter.on('start_game', this.startGame, this); // listen for start game event
         var mediaManager = new MediaManager({scene: this});
-
-        var sb = new SoundButtons({scene: this});
     }
 
     startGame() {

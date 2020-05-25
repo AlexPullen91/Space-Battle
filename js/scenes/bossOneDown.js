@@ -41,7 +41,4 @@ class BossOneDown extends Phaser.Scene {
         this.scene.start('BossTwo');
     }
 
-    update() {
-
-    }
 }
