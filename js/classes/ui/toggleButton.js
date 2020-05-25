@@ -42,7 +42,7 @@ class ToggleButton extends Phaser.GameObjects.Container {
 		this.scene.add.existing(this);
     }
 
-    setNoScroll() {
+    setNoScroll() { // allow icons to follow the camera movement rather than stay fixed in place
         this.back.setScrollFactor(0);
         this.onIcon.setScrollFactor(0);
         this.offIcon.setScrollFactor(0);

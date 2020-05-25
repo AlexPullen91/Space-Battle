@@ -312,8 +312,6 @@ class BossOne extends Phaser.Scene { // creates a scene to be referenced in main
     // measure time between the time down and the time up
     var elapsed = Math.abs(this.downTime - this.getTimer());
 
-    console.log(elapsed);
-
     if (elapsed < 300) {
       // move if its a fast click, shoot if it otherwise
       var tx = this.background.input.localX * this.background.scaleX; // where on the image it was clicked
