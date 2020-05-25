@@ -33,7 +33,8 @@ class BossOneDown extends Phaser.Scene {
 
         emitter.on('start_game', this.startGame, this); // listen for start game event
         mediaManager = new MediaManager({scene: this});
-
+        mediaManager.setBackgroundMusic("backgroundMusic");
+        var sb = new SoundButtons({scene: this});
         
     }
 

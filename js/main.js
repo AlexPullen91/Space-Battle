@@ -2,6 +2,7 @@ var game; // make game a global object
 var model; // make model a global object
 var emitter; // make emitter a global object
 var controller;  // make controller a global object
+var G; // make G a global object
 var mediaManager; // make media manager a global object
 
 window.onload = function() {
